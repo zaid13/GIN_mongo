@@ -63,6 +63,7 @@ func handleUpdateTask(c *gin.Context) {
 func main() {
 	r := gin.Default()
 	r.GET("/tasks/:id", handleGetTask)
+	r.GET("/", handleGetTask)
 	r.GET("/tasks/", handleGetTasks)
 	r.PUT("/tasks/", handleCreateTask)
 	r.POST("/tasks/", handleUpdateTask)
