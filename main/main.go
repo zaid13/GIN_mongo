@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -61,11 +62,24 @@ func handleUpdateTask(c *gin.Context) {
 }
 
 func main() {
+	port := os.Getenv("PORT")
+
+	if port == "" {
+		log.Fatal("$PORT must be set")
+	}
+
 	r := gin.Default()
 	r.GET("/tasks/:id", handleGetTask)
-	r.GET("/", handleGetTask)
 	r.GET("/tasks/", handleGetTasks)
 	r.PUT("/tasks/", handleCreateTask)
 	r.POST("/tasks/", handleUpdateTask)
 	r.Run(":8090") // listen and serve on 0.0.0.0:8080
+
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(http.StatusBadRequest, gin.H{"msg": "okay"})
+		return
+	})
+
+	r.Run(":" + port)
+
 }
