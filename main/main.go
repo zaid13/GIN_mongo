@@ -63,7 +63,7 @@ func handleUpdateTask(c *gin.Context) {
 
 func main() {
 
-	os.Setenv("PORT", "32432")
+	//os.Setenv("PORT", "32432")
 
 	port := os.Getenv("PORT")
 
