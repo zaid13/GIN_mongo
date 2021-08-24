@@ -68,7 +68,6 @@ func main() {
 	port := os.Getenv("PORT")
 
 	if port == "" {
-
 		log.Fatal("$PORT must be set")
 	}
 
@@ -81,6 +80,7 @@ func main() {
 
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"msg": "okay"})
+
 		return
 	})
 
